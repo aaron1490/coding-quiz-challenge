@@ -28,6 +28,12 @@
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
+          <div id="answer-buttons">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
       </div>
 
       <div id="end-screen" class="hide">
@@ -43,6 +49,6 @@
     </div>
 
     <script src="./assets/js/questions.js"></script>
-    <script type="module" src="./assets/js/logic.js"></script>
+    <script type="module" src="./assets/js/logic.js"></script> <!-- Module script type added to make the import from questions.js function to work. More info on this at https://javascript.info/modules-intro#external-scripts -->
   </body>
 </html>
