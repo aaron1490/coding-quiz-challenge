@@ -6,21 +6,20 @@ var questionTitleEl = document.getElementById("question-title");
 var questionsScreenEl = document.getElementById("questions");
 var startScrenEl = document.getElementById("start-screen");
 var choicesEl = document.getElementById("choices");
-var answerBtn = document.getElementById("answer-buttons")
+var answerBtn = document.getElementById("answer-buttons");
 var timerEl = document.getElementById("time");
 var scoreEl = document.getElementsByClassName("scores");
 var endScreenEl = document.getElementById("end-screen");
 var submitEl = document.getElementById("submit");
 
+
 // Declaring variables
-var numberOfQuestions = questions.length;
 var questionIndex = 0;
 var score = 0;
 var timeLeft = 60;
 var currentQuestionIndex = 0;
 
 // Declaring Constants
-const timerInterval = 1000;
 const penalty = 10
 
 
@@ -47,22 +46,20 @@ function timeStart() {
     timerEl.textContent = timeLeft;
     // add timer that moves at intervial of -1000ms
   }, 1000);
-}
+};
 
 function timePenalty() {
   // remove 10 secs of time when wrong answer event listener is selected
   timeLeft -= 10;
-}
+};
 
 function nextQuestion() {
   // if any button is clicked, progress to the next question
   currentQuestion += 1;
-}
+};
 
 function currentQuestion() {
-  var currentQuestion = questions[currentQuestionIndex];
-  var currentQuestionIndex = currentQuestionIndex + 1;
-  questionTitleEl.innerHTML = `${currentQuestionIndex}. ${currentQuestion.question}`
+
 }
 
 function wrongAnswer() {
@@ -71,17 +68,14 @@ function wrongAnswer() {
   // display wrong answer message at the bottom
   // move onto the next question
   nextQuestion();
-}
+};
 
 function rightAnswer() {
   // if right answer selected, add points to score
   // display right answer message at the bottom
   // move onto the next question
   nextQuestion();
-}
-
-
-
+};
 
 // Display quiz title
 
