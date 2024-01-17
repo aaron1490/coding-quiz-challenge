@@ -7,6 +7,9 @@ var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title')
 var answerBtnsEl = document.getElementById('answer-buttons');
 var timerEl = document.getElementById("time");
+var choicesEl = document.getElementById('choices');
+var startBtn = document.getElementById('start');
+var submitEl = document.getElementById("submit");
 
 
 
@@ -19,6 +22,12 @@ var currentQuestionIndex = 0;
 // Declare constants
 
 
+// Adding event listeners
+startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
+choicesEl.addEventListener('click', checkAnswer); // event listener for answer buttons
+submitEl.addEventListener('click', submitScore); // event listener for submit button
+
+
 
 // Pseudocode for quiz:
 
@@ -28,6 +37,14 @@ function startQuiz() {
   startScreenEl.classList.add("hide"); // hide the start screen
   showQuestion();
   timeStart();
+
+  nextQuestion();
+  currentQuestion();
+  // start timer function
+  timeStart();
+  wrongAnswer();
+  rightAnswer();
+
 }
 
 function showQuestion() {
@@ -43,8 +60,34 @@ function timeStart() {
   }, 1000);
 };
 
+function timePenalty() {
+  // remove 10 secs of time when wrong answer event listener is selected
+  timeLeft -= 10;
+};
 
+function nextQuestion() {
+  // if any button is clicked, progress to the next question
+  currentQuestion += 1;
+};
 
+function currentQuestion() {
+  
+}
+
+function wrongAnswer() {
+  // if wrong answer selected, remove 10 secs of time
+  timePenalty();
+  // display wrong answer message at the bottom
+  // move onto the next question
+  nextQuestion();
+};
+
+function rightAnswer() {
+  // if right answer selected, add points to score
+  // display right answer message at the bottom
+  // move onto the next question
+  nextQuestion();
+};
 
 // Function for starting the timer countdown from 60 seconds when the above is clicked
 
@@ -59,8 +102,8 @@ function timeStart() {
 
 
 
-const startBtn = document.getElementById('start');
-startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
+
+
 
 
 
@@ -82,16 +125,15 @@ startBtn.addEventListener('click', startQuiz); // event listener for start butto
 
 
 // // Element selectors
-// var startBtnEl = document.getElementById("start");
-// var questionTitleEl = document.getElementById("question-title");
+
 // var questionsScreenEl = document.getElementById("questions");
 // var startScrenEl = document.getElementById("start-screen");
 // var choicesEl = document.getElementById("choices");
-// var answerBtn = document.getElementById("answer-buttons");
+
 // var timerEl = document.getElementById("time");
 // var scoreEl = document.getElementsByClassName("scores");
 // var endScreenEl = document.getElementById("end-screen");
-// var submitEl = document.getElementById("submit");
+
 
 
 // // Declaring variables
@@ -120,43 +162,15 @@ startBtn.addEventListener('click', startQuiz); // event listener for start butto
 //   rightAnswer();
 // });
 
-// function timeStart() {
-//   timerEl.textContent = timeLeft;
-//   var timerInterval = setInterval(function() {
-//     timeLeft--;
-//     timerEl.textContent = timeLeft;
-//     // add timer that moves at intervial of -1000ms
-//   }, 1000);
-// };
 
-// function timePenalty() {
-//   // remove 10 secs of time when wrong answer event listener is selected
-//   timeLeft -= 10;
-// };
 
-// function nextQuestion() {
-//   // if any button is clicked, progress to the next question
-//   currentQuestion += 1;
-// };
+
 
 // function currentQuestion() {
 
 // }
 
-// function wrongAnswer() {
-//   // if wrong answer selected, remove 10 secs of time
-//   timePenalty();
-//   // display wrong answer message at the bottom
-//   // move onto the next question
-//   nextQuestion();
-// };
 
-// function rightAnswer() {
-//   // if right answer selected, add points to score
-//   // display right answer message at the bottom
-//   // move onto the next question
-//   nextQuestion();
-// };
 
 // // Display quiz title
 
