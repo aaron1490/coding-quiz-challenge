@@ -5,16 +5,16 @@ import { questions } from "./questions.js";
 var questionsScreenEl = document.getElementById('questions');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title')
-var btn1 = document.getElementsByClassName('btn1');
-var btn2 = document.getElementsByClassName('btn2');
-var btn3 = document.getElementsByClassName('btn3');
-var btn4 = document.getElementsByClassName('btn4');
+var answerBtnsEl = document.getElementById('answer-buttons');
+var timerEl = document.getElementById("time");
 
 
 
 // Declare variables
 var questionIndex = 0;
 var score = 0;
+var timeLeft = 60;
+var currentQuestionIndex = 0;
 
 // Declare constants
 
@@ -27,16 +27,21 @@ function startQuiz() {
   questionsScreenEl.classList.remove("hide"); // show the questions screen
   startScreenEl.classList.add("hide"); // hide the start screen
   showQuestion();
+  timeStart();
 }
 
 function showQuestion() {
   questionTitleEl.innerText = questions[0].questionId + ".) " + questions[0].questionText;
-  btn1.innerText = questions[0].choices[0].text;
-  btn2.innerText = questions[0].choices[1].text;
-  btn3.innerText = questions[0].choices[2].text;
-  btn4.innerText = questions[0].choices[3].text;
 }
 
+function timeStart() {
+  timerEl.textContent = timeLeft;
+  setInterval(function() {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+    // add timer that moves at intervial of -1000ms
+  }, 1000);
+};
 
 
 
