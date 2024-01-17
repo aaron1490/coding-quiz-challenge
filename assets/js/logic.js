@@ -5,10 +5,16 @@ import { questions } from "./questions.js";
 var questionsScreenEl = document.getElementById('questions');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title')
+var btn1 = document.getElementsByClassName('btn1');
+var btn2 = document.getElementsByClassName('btn2');
+var btn3 = document.getElementsByClassName('btn3');
+var btn4 = document.getElementsByClassName('btn4');
+
 
 
 // Declare variables
 var questionIndex = 0;
+var score = 0;
 
 // Declare constants
 
@@ -18,12 +24,23 @@ var questionIndex = 0;
 
 // Function for moving off landing page when start is clicked
 function startQuiz() {
-  console.log("Event Triggered: Start Quiz");
   questionsScreenEl.classList.remove("hide"); // show the questions screen
   startScreenEl.classList.add("hide"); // hide the start screen
-  questionTitleEl.innerText = questionIndex + 1 + ".) " + questions[0].questionText;
-  
+  showQuestion();
 }
+
+function showQuestion() {
+  questionTitleEl.innerText = questions[0].questionId + ".) " + questions[0].questionText;
+  btn1.innerText = questions[0].choices[0].text;
+  btn2.innerText = questions[0].choices[1].text;
+  btn3.innerText = questions[0].choices[2].text;
+  btn4.innerText = questions[0].choices[3].text;
+}
+
+
+
+
+
 // Function for starting the timer countdown from 60 seconds when the above is clicked
 
 // Function for adding title of the question to the top
