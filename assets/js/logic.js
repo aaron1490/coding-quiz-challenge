@@ -52,6 +52,7 @@ function showQuestionPage() {
 
 function currentQuestion() {
   // Clear existing choices
+  console.log(currentQuestionIndex);
   choicesEl.innerHTML = "";
 
   // display current question
@@ -70,22 +71,23 @@ function currentQuestion() {
     choicesEl.appendChild(choiceBtn);
 
   })
-
-
+  
 }
-
 // add event listener to each choice
-    choicesEl.addEventListener("click", function (event) {
-    checkAnswer(event);
-    });
-    
+choicesEl.addEventListener("click", function (event) {
+  checkAnswer(event);
+});
+
+
 function checkAnswer(event) {
   var selectedChoice = event.target.textContent; // Use event.target.textContent to get the selected choice
   var correctAnswer = questions[currentQuestionIndex].correctAnswer; // declaring correctAnswer variable to the correct answer for the quiz
 
   if (selectedChoice === correctAnswer) {
+    // console.log('correct');
     rightAnswer();
   } else {
+    // console.log('wrong');
     wrongAnswer();
   }
   // currentQuestionIndex++;
@@ -112,6 +114,7 @@ function timeStart() {
 
 
 function nextQuestion() {
+  // console.log(nextQuestion);
   currentQuestionIndex += 1;
   if (currentQuestionIndex < questions.length) {
     currentQuestion();
@@ -146,7 +149,8 @@ function rightAnswer() {
 
 // Adding event listeners
 startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
-choicesEl.addEventListener('click', function (event) {
-  checkAnswer(event)
-}); // event listener for answer buttons
+// event listener for answer buttons
+// choicesEl.addEventListener('click', function (event) {
+//   checkAnswer(event)
+// });
 // submitEl.addEventListener('click', submitScore); // event listener for submit button
