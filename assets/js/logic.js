@@ -12,6 +12,7 @@ var endScreenEl = document.getElementById("end-screen");
 var scoreEl = document.getElementById("final-score");
 var startBtn = document.getElementById('start');
 var submitEl = document.getElementById("submit");
+var initialsEl = document.getElementById("initials");
 var currentQuestionNumber;
 var interval;
 
@@ -150,6 +151,19 @@ function endQuiz() {
   var scoreSum = score + timeLeft;
   scoreEl.innerText = scoreSum;
 }
+
+function submitScore(submitEl) {
+  var initials = initialsEl.value;
+
+  if (initials === "") {
+    alert("Please enter your initials");
+  } else {
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || []; // get high scores from local storage
+    highScores.push({ initials: initials, score: score }); // push initials and score to highScores array
+    localStorage.setItem("highScores", JSON.stringify(highScores)); // store high scores in local storage
+    window.location.href = "highscores.html"; // redirect to highscores page
+    }
+  }
 
 // Adding event listeners
 startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
