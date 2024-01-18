@@ -35,9 +35,9 @@ function startQuiz() {
   showQuestionPage();
   // start timer function
   timeStart();
-  wrongAnswer();
-  rightAnswer();
-  nextQuestion();
+  // wrongAnswer();
+  // rightAnswer();
+  // nextQuestion();
 
 }
 
@@ -69,22 +69,25 @@ function currentQuestion() {
     choicesEl.appendChild(choiceBtn);
 
     // add event listener to each choice
-    choiceBtn.addEventListener("click", function(event) {
-      // check if the correct answer is selected
-    checkAnswer();
-    })
+    choicesEl.addEventListener("click", function(event) {
+    checkAnswer(event);
+    });
   })
 }
-
 function checkAnswer(event) {
-  // get selected choice
-  const selectedChoice = event.target.textContent;
+  var selectedChoice = event.target.textContent; // Use event.target.textContent to get the selected choice
+  var correctAnswer = questions[currentQuestionIndex].correctAnswer; // declaring correctAnswer variable to the correct answer for the quiz
 
-  // check if the correct answer is selected
-  if (selectedChoice === questions.correctAnswer) {
+  if (selectedChoice === correctAnswer) {
     rightAnswer();
-    } else {
-    wrongAnswer();         
+  } else {
+    wrongAnswer();
+  }
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    currentQuestion();
+  } else {
+    endQuiz();
   }
 }
 
@@ -101,9 +104,13 @@ function timeStart() {
 
 
 function nextQuestion() {
-  // if any button is clicked, progress to the next question
   currentQuestionIndex += 1;
-};
+  if (currentQuestionIndex < questions.length) {
+    currentQuestion();
+  } else {
+    endQuiz();
+  }
+}
 
 function wrongAnswer() { 
   feedbackEl.classList.remove("hide");
@@ -129,11 +136,9 @@ function rightAnswer() {
 };
 
 
-
-
 // Adding event listeners
 startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
-choicesEl.addEventListener('click', rightAnswer, wrongAnswer); // event listener for answer buttons
+// choicesEl.addEventListener('click', rightAnswer, wrongAnswer); // event listener for answer buttons
 // submitEl.addEventListener('click', submitScore); // event listener for submit button
 
 
