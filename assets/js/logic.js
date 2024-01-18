@@ -13,6 +13,7 @@ var scoreEl = document.getElementById("final-score");
 var startBtn = document.getElementById('start');
 var submitEl = document.getElementById("submit");
 var currentQuestionNumber;
+var interval;
 
 // Declare variables
 var questionIndex = 0;
@@ -77,12 +78,11 @@ function checkAnswer(event) {
 
 function timeStart() {
   timerEl.textContent = timeLeft;
-  var interval = setInterval(function () {
+  interval = setInterval(function () {
     if (timeLeft > 0) {
       timeLeft--;
       timerEl.textContent = timeLeft;
     } else {
-      clearInterval(interval);
       endQuiz();
     }
   }, 1000);
@@ -90,7 +90,6 @@ function timeStart() {
 
 
 function nextQuestion() {
-  // console.log(nextQuestion);
   currentQuestionIndex += 1;
   if (currentQuestionIndex < questions.length) {
     currentQuestion();
@@ -141,7 +140,7 @@ function delayRight() {
 
 function endQuiz() {
   // stop timer
-  clearInterval(timerEl);
+  clearInterval(interval);
   // hide questions screen and display end screen
   questionsScreenEl.classList.add("hide");
   endScreenEl.classList.remove("hide");

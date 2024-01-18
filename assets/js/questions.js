@@ -1,4 +1,4 @@
-// Sample questions obtained from: https://www.guru99.com/javascript-interview-questions-answers.html and https://www.linkedin.com/pulse/sharpen-your-javascript-skills-multiple-choice-laurence-svekis--iulyc/?trk=article-ssr-frontend-pulse_more-articles_related-content-card and Xpert learning Assistant on Bootcamp dashboard
+// Sample questions obtained from: https://www.interviewbit.com/javascript-mcq/
 
 const questions = [
   {
@@ -24,36 +24,91 @@ const questions = [
   },
 
   {
-    questionText: "Which of the following is a invalid way to declare a variable in JavaScript?",
+    questionText: "Javascript is an _______ language?",
     choices: [
-      "variable = 10;", 
-      "var = 10;", 
-      "let variable = 10;", 
-      "const variable = 10;"
+      "Object-Oriented", 
+      "Object-Based", 
+      "Procedural", 
+      "None of the Above"
     ],
-    correctAnswer: "const variable = 10;",
+    correctAnswer: "Object-Oriented",
   },
 
   {
-    questionText: "What is the correct syntax to add an event listener to a button element in JavaScript?",
+    questionText: "Which of the following keywords is used to define a variable in Javascript?",
     choices: [ 
-      'button.addEventListener("click", myFunction());', 
-      'button.on("click", myFunction());', 
-      'button.onclick = myFunction();', 
-      'button.click(myFunction());' 
+      'var', 
+      'let', 
+      'Both A and B', 
+      'None of the above' 
     ],
-    correctAnswer: 'button.addEventListener("click", myFunction());',
+    correctAnswer: 'Both A and B',
   },
 
   {
-    questionText: "What is the difference between null and undefined in JavaScript?",
+    questionText: "Which of the following methods can be used to display data in some form using Javascript?",
     choices: [ 
-      "They are the same and can be used interchangeably", 
-      "null represents an empty or non-existent value, while undefined indicates a variable that has been declared but not assigned a value", 
-      "null indicates a variable that has been declared but not assigned a value, while undefined represents an empty or non-existent value", 
-      "null is a number, while undefined is a boolean value"
+      "document.write()", 
+      "console.log()", 
+      "window.alert()", 
+      "All of the above"
     ],
-    correctAnswer: "null represents an empty or non-existent value, while undefined indicates a variable that has been declared but not assigned a value",
+    correctAnswer: "All of the above",
+  },
+
+  {
+    questionText: "When an operator’s value is NULL, the typeof returned by the unary operator is:",
+    choices: [ 
+      "Boolean", 
+      "Undefined", 
+      "Object", 
+      "Integer"
+    ],
+    correctAnswer: "Object",
+  },
+
+  {
+    questionText: "Which function is used to serialize an object into a JSON string in Javascript?:",
+    choices: [ 
+      "stringify()", 
+      "parse()", 
+      "convert()", 
+      "None of the above"
+    ],
+    correctAnswer: "stringify()",
+  },
+
+  {
+    questionText: "Which of the following is NOT a Javascript framework?",
+    choices: [ 
+      "Node", 
+      "Vue", 
+      "React", 
+      "Cassandra"
+    ],
+    correctAnswer: "Cassandra",
+  },
+
+  {
+    questionText: "How to stop an interval timer in Javascript?",
+    choices: [ 
+      "clearInterval", 
+      "clearTimer", 
+      "intervalOver", 
+      "None of the above"
+    ],
+    correctAnswer: "clearInterval",
+  },
+
+  {
+    questionText: "How do we write a comment in javascript?",
+    choices: [ 
+      "/* */", 
+      "//", 
+      "#", 
+      "<!--  -->"
+    ],
+    correctAnswer: "//",
   },
 ];
 
