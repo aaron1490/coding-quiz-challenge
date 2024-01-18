@@ -5,7 +5,7 @@ import { questions } from "./questions.js";
 var questionsScreenEl = document.getElementById('questions');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title')
-var answerBtnsEl = document.getElementById('answer-buttons');
+var choicesEl = document.getElementById("choices");
 var timerEl = document.getElementById("time");
 var choicesEl = document.getElementById('choices');
 var startBtn = document.getElementById('start');
@@ -22,10 +22,7 @@ var currentQuestionIndex = 0;
 // Declare constants
 
 
-// Adding event listeners
-startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
-choicesEl.addEventListener('click', checkAnswer); // event listener for answer buttons
-submitEl.addEventListener('click', submitScore); // event listener for submit button
+
 
 
 
@@ -33,23 +30,58 @@ submitEl.addEventListener('click', submitScore); // event listener for submit bu
 
 // Function for moving off landing page when start is clicked
 function startQuiz() {
-  questionsScreenEl.classList.remove("hide"); // show the questions screen
-  startScreenEl.classList.add("hide"); // hide the start screen
-  showQuestion();
-  timeStart();
-
-  nextQuestion();
+  // function to switch off current landing page and move to questions page
+  showQuestionPage();
+  // function to display current question 
   currentQuestion();
   // start timer function
   timeStart();
   wrongAnswer();
   rightAnswer();
+  nextQuestion();
 
 }
 
-function showQuestion() {
-  questionTitleEl.innerText = questions[0].questionId + ".) " + questions[0].questionText;
+function showQuestionPage() {
+  // hide landing page and display first question
+  startScreenEl.classList.add("hide"); // hide the start screen
+  questionsScreenEl.classList.remove("hide"); // show the questions screen
+  currentQuestion();
+  
 }
+
+function currentQuestion() {
+  // Clear existing choices
+  choicesEl.innerHTML = "";
+
+  // display current question
+  var question = questions[currentQuestionIndex];
+  var choices = questions[currentQuestionIndex].choices;
+
+  // Display the question text
+  currentQuestion = questionIndex + 1;
+  questionTitleEl.innerText = `${currentQuestion}.) ${question.questionText}`;
+
+  // Display the choices
+  choices.forEach(function(choice) {
+    const choiceBtn = document.createElement("button");
+    choiceBtn.textContent = choice;  // display the choices
+    choiceBtn.classList.add("btn");
+    choicesEl.appendChild(choiceBtn);
+
+    // add event listener to each choice
+    choiceBtn.addEventListener("click", function() {
+      // check if the correct answer is selected
+      if (choice === question.answer) {
+        rightAnswer();
+        } else {
+        wrongAnswer();         
+      }
+    })
+  })
+}
+
+
 
 function timeStart() {
   timerEl.textContent = timeLeft;
@@ -60,19 +92,11 @@ function timeStart() {
   }, 1000);
 };
 
-function timePenalty() {
-  // remove 10 secs of time when wrong answer event listener is selected
-  timeLeft -= 10;
-};
 
 function nextQuestion() {
   // if any button is clicked, progress to the next question
-  currentQuestion += 1;
+  currentQuestionIndex += 1;
 };
-
-function currentQuestion() {
-  
-}
 
 function wrongAnswer() {
   // if wrong answer selected, remove 10 secs of time
@@ -82,12 +106,32 @@ function wrongAnswer() {
   nextQuestion();
 };
 
+function timePenalty() {
+  // remove 10 secs of time when wrong answer event listener is selected
+  timeLeft -= 10;
+};
 function rightAnswer() {
   // if right answer selected, add points to score
   // display right answer message at the bottom
   // move onto the next question
   nextQuestion();
 };
+
+
+
+
+// Adding event listeners
+startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
+// choicesEl.addEventListener('click', checkAnswer); // event listener for answer buttons
+// submitEl.addEventListener('click', submitScore); // event listener for submit button
+
+
+
+
+
+
+
+
 
 // Function for starting the timer countdown from 60 seconds when the above is clicked
 
