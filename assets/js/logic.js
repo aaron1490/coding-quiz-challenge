@@ -8,25 +8,17 @@ var questionTitleEl = document.getElementById('question-title')
 var choicesEl = document.getElementById("choices");
 var timerEl = document.getElementById("time");
 var feedbackEl = document.getElementById("feedback");
-var currentQuestionNumber;
-
+var endScreenEl = document.getElementById("end-screen");
+var scoreEl = document.getElementById("final-score");
 var startBtn = document.getElementById('start');
 var submitEl = document.getElementById("submit");
-
-
+var currentQuestionNumber;
 
 // Declare variables
 var questionIndex = 0;
 var score = 0;
 var timeLeft = 60;
 var currentQuestionIndex = 0;
-
-// Declare constants
-
-
-
-
-
 
 // Pseudocode for quiz:
 
@@ -36,10 +28,6 @@ function startQuiz() {
   showQuestionPage();
   // start timer function
   timeStart();
-  // wrongAnswer();
-  // rightAnswer();
-  // nextQuestion();
-
 }
 
 function showQuestionPage() {
@@ -47,7 +35,6 @@ function showQuestionPage() {
   startScreenEl.classList.add("hide"); // hide the start screen
   questionsScreenEl.classList.remove("hide"); // show the questions screen
   currentQuestion();
-  
 }
 
 function currentQuestion() {
@@ -73,10 +60,7 @@ function currentQuestion() {
   })
   
 }
-// add event listener to each choice
-choicesEl.addEventListener("click", function (event) {
-  checkAnswer(event);
-});
+
 
 
 function checkAnswer(event) {
@@ -84,18 +68,10 @@ function checkAnswer(event) {
   var correctAnswer = questions[currentQuestionIndex].correctAnswer; // declaring correctAnswer variable to the correct answer for the quiz
 
   if (selectedChoice === correctAnswer) {
-    // console.log('correct');
     rightAnswer();
   } else {
-    // console.log('wrong');
     wrongAnswer();
   }
-  // currentQuestionIndex++;
-  // if (currentQuestionIndex < questions.length) {
-  //   currentQuestion();
-  // } else {
-  //   endQuiz();
-  // }
 }
 
 
@@ -124,11 +100,10 @@ function nextQuestion() {
 }
 
 function wrongAnswer() { 
-  feedbackEl.classList.remove("hide");
-  feedbackEl.innerText = "Wrong!";
   // if wrong answer selected, remove 10 secs of time
   timePenalty();
-  // display wrong answer message at the bottom
+  // display feedback message with a delay of 1000ms
+  delayWrong();
   // move onto the next question
   nextQuestion();
 };
@@ -140,17 +115,44 @@ function timePenalty() {
 function rightAnswer() {
   // if right answer selected, add points to score
   score += 10;
-  // display right answer message at the bottom
-  feedbackEl.innerText = "Correct!";
+  // display feedback message with a delay of 1000ms
+  delayRight();
   // move onto the next question
   nextQuestion();
 };
 
+// created a function to display feedback for wrong answers, but also add a delay of 1 second when the feedback is displayed
+function delayWrong() {
+  feedbackEl.classList.remove("hide");
+  feedbackEl.innerText = "Wrong!";
+  setTimeout(function () {
+    feedbackEl.classList.add("hide");
+  }, 1000);
+};
+// created a function to display feedback for right answers, but also add a delay of 1 second when the feedback is displayed
+function delayRight() {
+  feedbackEl.classList.remove("hide");
+  feedbackEl.innerText = "Correct!";
+  setTimeout(function () {
+    feedbackEl.classList.add("hide");
+  }, 1000);
+};
+
+
+function endQuiz() {
+  // stop timer
+  clearInterval(timerEl);
+  // hide questions screen and display end screen
+  questionsScreenEl.classList.add("hide");
+  endScreenEl.classList.remove("hide");
+  // display score at the end screen
+  scoreEl.innerText = score;
+}
 
 // Adding event listeners
 startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
-// event listener for answer buttons
-// choicesEl.addEventListener('click', function (event) {
-//   checkAnswer(event)
-// });
+// add event listener to each choice
+choicesEl.addEventListener("click", function (event) {
+  checkAnswer(event);
+});
 // submitEl.addEventListener('click', submitScore); // event listener for submit button
