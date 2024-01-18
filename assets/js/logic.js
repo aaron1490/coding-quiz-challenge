@@ -128,6 +128,7 @@ function delayWrong() {
     feedbackEl.classList.add("hide");
   }, 1000);
 };
+
 // created a function to display feedback for right answers, but also add a delay of 1 second when the feedback is displayed
 function delayRight() {
   feedbackEl.classList.remove("hide");
@@ -139,13 +140,15 @@ function delayRight() {
 
 
 function endQuiz() {
-  // stop timer
+  // stops timer when the quiz ends
   clearInterval(interval);
   // hide questions screen and display end screen
   questionsScreenEl.classList.add("hide");
   endScreenEl.classList.remove("hide");
-  // display score at the end screen
-  scoreEl.innerText = score;
+
+  // display score at the end screen this is a combination of score and time left
+  var scoreSum = score + timeLeft;
+  scoreEl.innerText = scoreSum;
 }
 
 // Adding event listeners
@@ -154,4 +157,4 @@ startBtn.addEventListener('click', startQuiz); // event listener for start butto
 choicesEl.addEventListener("click", function (event) {
   checkAnswer(event);
 });
-// submitEl.addEventListener('click', submitScore); // event listener for submit button
+submitEl.addEventListener('click', submitScore); // event listener for submit button
