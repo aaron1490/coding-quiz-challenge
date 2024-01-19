@@ -1,5 +1,4 @@
 // Sample questions obtained from: https://www.interviewbit.com/javascript-mcq/
-
 const questions = [
   {
     questionText: "What is 1 + '1'?",
