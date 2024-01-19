@@ -28,7 +28,7 @@ This will challenge my knowledge and learnings within JavaScript as I will have 
 
 ## Instructions/Demo for users
 
-1. Open the page from the [deployed link](TO BE COMPLETED) - see below image for reference.
+1. Open the page from the [deployed link](https://aaron1490.github.io/coding-quiz-challenge/) - see below image for reference.
 ![Start Page Demo](./assets/images/startQuizDemo.JPG)
 
 2. Click the button to start the quiz. The quiz questions will appear.
@@ -66,7 +66,7 @@ Feel free to contact me if you have any questions or just want to connect:
 
 ## Links
 
-* [Link to the deployed page](TO BE COMPLETED)
+* [Link to the deployed page](https://aaron1490.github.io/coding-quiz-challenge/)
 * [Link to the GitHub repository](https://github.com/aaron1490/coding-quiz-challenge)
 
 
