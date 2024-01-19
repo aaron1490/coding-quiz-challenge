@@ -11,6 +11,7 @@ This will challenge my knowledge and learnings within JavaScript as I will have 
   - Local storage
   - DOM manipulation
   - Timers
+  - Web APIs
 
 ## Technologies Used and Project Structure
 
