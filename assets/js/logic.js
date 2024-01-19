@@ -86,6 +86,7 @@ function timeStart() {
   }, 1000);
 }
 
+// created a function to display feedback for right answers, but also add a delay of 1 second when the feedback is displayed
 function nextQuestion() {
   currentQuestionIndex += 1;
   if (currentQuestionIndex < questions.length) {
@@ -148,13 +149,13 @@ function endQuiz() {
 
   // display score at the end screen this is a combination of score and time left
   var scoreSum = score + timeLeft;
-  scoreEl.innerText = scoreSum;
+  scoreEl.innerText = scoreSum; 
 }
 
 function submitScore(submitEl) {
-  var initials = initialsEl.value;
+  var initials = initialsEl.value; // get initials
 
-  if (initials === "") {
+  if (initials === "") { // check if initials are entered, if not, alert user
     alert("Please enter your initials");
   } else {
     var highScores = JSON.parse(localStorage.getItem("highScores")) || []; // get high scores from local storage
@@ -165,9 +166,11 @@ function submitScore(submitEl) {
 }
 
 // Adding event listeners
-startBtn.addEventListener("click", startQuiz); // event listener for start button on quiz
+// event listener for start button
+startBtn.addEventListener("click", startQuiz);
 // add event listener to each choice
 choicesEl.addEventListener("click", function (event) {
   checkAnswer(event);
 });
-submitEl.addEventListener("click", submitScore); // event listener for submit button
+// event listener for submit button
+submitEl.addEventListener("click", submitScore);

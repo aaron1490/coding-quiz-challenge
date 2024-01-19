@@ -7,8 +7,8 @@ clearBtn.addEventListener("click", clearScores);
 
 // function to clear scores that are saved locally
 function clearScores() {
-  window.localStorage.clear();
-  highScoreList.innerHTML = "";
+  window.localStorage.clear(); // clear high scores from local storage
+  highScoreList.innerHTML = ""; // clear high score list
 }
 
 // function to display high scores
@@ -21,7 +21,7 @@ function displayHighScores() {
   highScores.forEach(function (score) {
     // display high scores
     var li = document.createElement("li"); // create list item
-    var scoreSum = score.score + score.timeLeft;
+    var scoreSum = score.score + score.timeLeft; // add score and time left
     li.textContent = score.initials + " - " + scoreSum; // display initials and score
     highScoreList.appendChild(li); // append list item to high score list
   });
