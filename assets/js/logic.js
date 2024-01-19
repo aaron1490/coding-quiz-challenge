@@ -2,15 +2,15 @@ import { questions } from "./questions.js";
 
 // Pseudocode for declarations/selectors:
 // All required query/id/class selectors
-var questionsScreenEl = document.getElementById('questions');
-var startScreenEl = document.getElementById('start-screen');
-var questionTitleEl = document.getElementById('question-title')
+var questionsScreenEl = document.getElementById("questions");
+var startScreenEl = document.getElementById("start-screen");
+var questionTitleEl = document.getElementById("question-title");
 var choicesEl = document.getElementById("choices");
 var timerEl = document.getElementById("time");
 var feedbackEl = document.getElementById("feedback");
 var endScreenEl = document.getElementById("end-screen");
 var scoreEl = document.getElementById("final-score");
-var startBtn = document.getElementById('start');
+var startBtn = document.getElementById("start");
 var submitEl = document.getElementById("submit");
 var initialsEl = document.getElementById("initials");
 var currentQuestionNumber;
@@ -53,17 +53,13 @@ function currentQuestion() {
   questionTitleEl.innerText = `${currentQuestionNumber}.) ${question.questionText}`;
 
   // Display the choices
-  choices.forEach(function(choice) {
+  choices.forEach(function (choice) {
     const choiceBtn = document.createElement("button");
-    choiceBtn.textContent = choice;  // display the choices
+    choiceBtn.textContent = choice; // display the choices
     choiceBtn.classList.add("btn");
     choicesEl.appendChild(choiceBtn);
-
-  })
-  
+  });
 }
-
-
 
 function checkAnswer(event) {
   var selectedChoice = event.target.textContent; // Use event.target.textContent to get the selected choice
@@ -75,7 +71,6 @@ function checkAnswer(event) {
     wrongAnswer();
   }
 }
-
 
 function timeStart() {
   timerEl.textContent = timeLeft;
@@ -89,7 +84,6 @@ function timeStart() {
   }, 1000);
 }
 
-
 function nextQuestion() {
   currentQuestionIndex += 1;
   if (currentQuestionIndex < questions.length) {
@@ -99,19 +93,19 @@ function nextQuestion() {
   }
 }
 
-function wrongAnswer() { 
+function wrongAnswer() {
   // if wrong answer selected, remove 10 secs of time
   timePenalty();
   // display feedback message with a delay of 1000ms
   delayWrong();
   // move onto the next question
   nextQuestion();
-};
+}
 
 function timePenalty() {
   // remove 10 secs of time when wrong answer event listener is selected
   timeLeft -= 10;
-};
+}
 function rightAnswer() {
   // if right answer selected, add points to score
   score += 10;
@@ -119,7 +113,7 @@ function rightAnswer() {
   delayRight();
   // move onto the next question
   nextQuestion();
-};
+}
 
 // created a function to display feedback for wrong answers, but also add a delay of 1 second when the feedback is displayed
 function delayWrong() {
@@ -128,7 +122,7 @@ function delayWrong() {
   setTimeout(function () {
     feedbackEl.classList.add("hide");
   }, 1000);
-};
+}
 
 // created a function to display feedback for right answers, but also add a delay of 1 second when the feedback is displayed
 function delayRight() {
@@ -137,8 +131,7 @@ function delayRight() {
   setTimeout(function () {
     feedbackEl.classList.add("hide");
   }, 1000);
-};
-
+}
 
 function endQuiz() {
   // stops timer when the quiz ends
@@ -159,16 +152,16 @@ function submitScore(submitEl) {
     alert("Please enter your initials");
   } else {
     var highScores = JSON.parse(localStorage.getItem("highScores")) || []; // get high scores from local storage
-    highScores.push({ initials: initials, score: score }); // push initials and score to highScores array
+    highScores.push({ initials: initials, score: score, timeLeft: timeLeft }); // push initials and score to highScores array
     localStorage.setItem("highScores", JSON.stringify(highScores)); // store high scores in local storage
     window.location.href = "highscores.html"; // redirect to highscores page
-    }
   }
+}
 
 // Adding event listeners
-startBtn.addEventListener('click', startQuiz); // event listener for start button on quiz
+startBtn.addEventListener("click", startQuiz); // event listener for start button on quiz
 // add event listener to each choice
 choicesEl.addEventListener("click", function (event) {
   checkAnswer(event);
 });
-submitEl.addEventListener('click', submitScore); // event listener for submit button
+submitEl.addEventListener("click", submitScore); // event listener for submit button
