@@ -22,8 +22,11 @@ var score = 0;
 var timeLeft = 60;
 var currentQuestionIndex = 0;
 
-// Pseudocode for quiz:
+// Audio elements
+var rightAnswerSound = new Audio("./assets/sfx/correct.wav");
+var wrongAnswerSound = new Audio("./assets/sfx/incorrect.wav");
 
+// Pseudocode for quiz:
 // Function for moving off landing page when start is clicked
 function startQuiz() {
   // function to switch off current landing page and move to questions page
@@ -94,6 +97,8 @@ function nextQuestion() {
 }
 
 function wrongAnswer() {
+  // sound effect for wrong answer
+  wrongAnswerSound.play();
   // if wrong answer selected, remove 10 secs of time
   timePenalty();
   // display feedback message with a delay of 1000ms
@@ -107,6 +112,8 @@ function timePenalty() {
   timeLeft -= 10;
 }
 function rightAnswer() {
+  // sound effect for right answer
+  rightAnswerSound.play();
   // if right answer selected, add points to score
   score += 10;
   // display feedback message with a delay of 1000ms
